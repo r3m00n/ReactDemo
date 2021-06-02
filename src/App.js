@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
 
-function App() {
+import UserCard from "./UserCard";
+
+import "./App.scss";
+
+export default function App() {
+  const [users, setUsers] = useState([]);
+  const [shownUsers, setShownUsers] = useState([]);
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((resp) => resp.json())
+      .then((data) => {
+        setUsers(data);
+        setShownUsers(data);
+      });
+  }, []);
+
+  const handleChange = (event) => {
+    setShownUsers(
+      users.filter((user) =>
+        user.name.toLowerCase().includes(event.target.value.toLowerCase())
+      )
+    );
+  };
+
+  const showUsers = () => {
+    return shownUsers.map((user) => <UserCard key={user.id} user={user} />);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id="app">
+      <h1>User directory</h1>
+      <input
+        type="text"
+        onChange={handleChange}
+        placeholder="Search for User..."
+      />
+      <div className="userWrapper">
+        {shownUsers.length > 0 ? showUsers() : <h1>User not found</h1>}
+      </div>
     </div>
   );
 }
-
-export default App;

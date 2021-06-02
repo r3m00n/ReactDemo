@@ -1,0 +1,141 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap");
+
+$dark: #1e272e;
+$grey: #bbbbbb;
+$primary: #34e325;
+$secondary: #26de81;
+$bright: #f2f2f2;
+
+* {
+  font-family: "Ubuntu", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
+  box-sizing: border-box;
+  font-family: "Ubuntu", sans-serif;
+  color: $dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: $dark;
+}
+
+li {
+  list-style: none;
+}
+
+input:focus {
+  outline: none;
+}
+
+#app {
+  width: 100vw;
+  min-height: 100vh;
+  padding: 1rem 5%;
+  background-color: rgb(244, 244, 244);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  > h1 {
+    text-align: center;
+    font-size: 5rem;
+    font-weight: bold;
+  }
+}
+
+input {
+  width: 250px;
+  height: 3rem;
+  padding: 0 1rem;
+  margin: 1rem 0 2rem;
+  font-size: 1.8rem;
+  color: grey;
+  background: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+
+  &::placeholder {
+    color: grey;
+  }
+}
+
+.userWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  > h1 {
+    margin-top: 1rem;
+    font-size: 2rem;
+  }
+}
+
+.userCard {
+  width: 300px;
+  height: 380px;
+  margin: 1rem;
+  cursor: pointer;
+  background: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  transition: 0.3s;
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 0.5em 0.5em -0.4em rgba(0, 0, 0, 0.3);
+    transform: translateY(-0.25em);
+  }
+
+  > img {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    filter: brightness(80%);
+  }
+
+  .bottom {
+    position: relative;
+    padding-top: 100px;
+    text-align: center;
+
+    img {
+      position: absolute;
+      top: -80px;
+      left: 70px;
+      border-radius: 50%;
+      border: 0.5rem solid white;
+    }
+
+    h2 {
+      font-size: 2rem;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      color: grey;
+    }
+  }
+}
+
+@media only screen and (max-width: 737px) {
+  #app > h1 {
+    font-size: 3rem;
+  }
+}
